@@ -21,29 +21,10 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">SignUp Form</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            <button class="btn btn-outline-warning" type="submit" id="clear-btn">Clear</button>
-          </form>
-        </div>
-      </div>
-    </nav>
+
     <div class="card bg-light">
         <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Sign Up Form</h4>
+            <h4 class="card-title mt-3 text-center">Update the details</h4>
 
             <form action="signup.php" method = "post" >
             <div class="form-group input-group">
@@ -90,30 +71,5 @@
     </div>
 </body>
 <?php 
-if (isset($_POST['signup']))
-{
- $user_email = $_POST['user_email'];
- $user_name = $_POST['user_name'];
- $user_gender = $_POST['user_gender'];
- $user_password = $_POST['user_password'];
- $user_confirm_password = ($_POST['user_confirm_password']);
 
- if (empty($user_email) || empty($user_name) || empty($user_gender)) {
-    echo '<script>alert("Please fill in all fields.");</script>';
-} elseif ($user_password !== $user_confirm_password) {
-    echo '<script>alert("Password did not match, Please try again.");</script>';
-  } else {
-
- $insert_data =  "INSERT INTO `users` ( `email`, `username`, `gender`, `password`, `confirmpassword`) VALUES ('$user_email','$user_name','$user_gender','$user_password','$user_confirm_password')";
- $run_data = mysqli_query($connection, $insert_data);
-
-if ($run_data === TRUE) {
-  echo '<script>alert("Registration successful!");</script>';
-} else {
-  echo "Error: " . $run_data . "<br>" . $conn->error;
-}
-  }
-}
-
-$connection->close();
 ?>
