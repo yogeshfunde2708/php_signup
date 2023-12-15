@@ -1,6 +1,3 @@
-<?php
-include "database.php";
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +13,7 @@ include "database.php";
 </head>
 <style>
         #table {
-            width: 70%; /* Set the table width to 100% */
-            /* max-width: 800px; */
+            width: 70%;
             margin-left: 15%;
             margin-top: 5%;
             text-align:center;
@@ -40,14 +36,16 @@ include "database.php";
               <a class="nav-link active text-light" aria-current="page" href="signup.php">Home</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+          <form class="d-flex" role="search" method="post">
+            <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" name="submit">Search</button>
             <button class="btn btn-outline-warning" type="submit" id="clear-btn">Clear</button>
           </form>
         </div>
       </div>
     </nav>
+
+
 <div class="table-responsive">
 <table id="table" class="table table-bordered overflow-auto">
 <thead>
@@ -63,6 +61,7 @@ include "database.php";
     <th>Delete</th>
 </tr>
 <?php
+include "database.php";
 $get_data = "SELECT * FROM users" ;
 $run_data = mysqli_query($connection, $get_data);
 $i = 0;
