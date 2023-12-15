@@ -13,9 +13,41 @@ include "database.php";
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
 </head>
+<style>
+        #table {
+            width: 70%; /* Set the table width to 100% */
+            /* max-width: 800px; */
+            margin-left: 15%;
+            margin-top: 5%;
+            text-align:center;
+        }
+        #clear-btn{
+        margin-left: 10px;
+        
+ }
+    </style>
 <body>
+<nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light" href="#">Table-signup details</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="signup.php">Home</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-warning" type="submit" id="clear-btn">Clear</button>
+          </form>
+        </div>
+      </div>
+    </nav>
 <div class="table-responsive">
 <table id="table" class="table table-bordered overflow-auto">
 <thead>
@@ -36,7 +68,8 @@ $run_data = mysqli_query($connection, $get_data);
 $i = 0;
 while($row = mysqli_fetch_array($run_data))
 {
-$sr_no = $i+1;
+$i++;
+$sr_no = $i;
 $id = $row['id'];
 $email = $row['email'];
 $username = $row['username'];
@@ -54,11 +87,8 @@ echo "
 <td class='text-center'>$password</td>
 <td class='text-center'>$confirmpassword</td>
 <td class='text-center'>
-        <a href='update.php ? id = $id&username = $username&gender = $gender&password=$password&confirmpassword = $confirmpassword' class='edit-row-btn btn btn-success'>Edit</a>
-        </td>
-        <td class='text-center'>
-        <a href='#' class='delete-row-btn btn btn-danger' data-id='$id'>Delete</a>
-        </td>
+    <a href='update.php?id=$id'class='edit-row-btn btn btn-success'>Edit</a></td><td class='text-center'>
+     <a href='delete.php?id=$id' class='delete-row-btn btn btn-danger'>Delete</a></td>
 </tr>
 ";
 }
@@ -67,7 +97,6 @@ echo "
 </thead>
 </table>
 </div>
-
 </body>
 </html>
 
