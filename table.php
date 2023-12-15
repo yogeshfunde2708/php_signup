@@ -15,7 +15,7 @@
         #table {
             width: 70%;
             margin-left: 15%;
-            margin-top: 5%;
+            margin-top: 20px;
             text-align:center;
         }
         #clear-btn{
@@ -45,6 +45,57 @@
       </div>
     </nav>
 
+    
+    <div class="table-responsive">
+    <table class="table table-bordered overflow-auto"style="width: 70%; margin-left: 15%; margin-top: 20px; text-align:center;">
+      <?php
+      include 'database.php';
+      if (isset($_POST['submit'])){
+      $search = $_POST['search'];
+
+      $sql = "SELECT * FROM users where id LIKE '%$search%' or username LIKE '%$search%'  or email LIKE '%$search%'";
+      $result=mysqli_query($connection,$sql);
+      if($result){
+        if(mysqli_num_rows($result)>0){
+          echo '
+          <thead>
+          <tr>
+          <th>Sr No.</th>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Gender</th>
+          <th>Password</th>
+          <th>Confirm-Password</th>
+          </tr>
+          </thead>
+          ';
+          $i=0;
+          while($row = mysqli_fetch_assoc($result)){
+          $i++;
+          echo'<tbody>
+          <tr>
+          <td>' . $i . '</td>
+          <td>' . $row['id'] . '</td>
+          <td>' . $row['email'] . '</td>
+          <td>' . $row['username'] . '</td>
+          <td>' . $row['gender'] . '</td>
+          <td>' . $row['password'] . '</td>
+          <td>' . $row['confirmpassword'] . '</td>
+          </tr>
+          </tbody>';
+          }
+        }else{
+          echo 'data not found';
+        }
+
+      }
+      
+      }
+      ?>
+    </table>
+    </div>
+   
 
 <div class="table-responsive">
 <table id="table" class="table table-bordered overflow-auto">
