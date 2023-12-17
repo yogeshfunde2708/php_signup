@@ -86,7 +86,7 @@
           </tbody>';
           }
         }else{
-          echo 'data not found';
+          echo '<script>alert("Data is not found!");</script>';
         }
 
       }
